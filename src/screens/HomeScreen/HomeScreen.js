@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image, FlatList} from 'react-native'
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image, FlatList ,ScrollView} from 'react-native'
 import React from 'react'
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
@@ -13,7 +13,7 @@ const HomeScreen = ({ navigation }) => {
             {/* Header Section */}
             <View style={{flexDirection: 'row', justifyContent:'space-between', paddingHorizontal:15}}>
                 {/* Replace this with your app logo */}
-                <View style={{ flexDirection: 'row', }}><Text style={{ fontSize: 20, fontWeight: 800 }}>Open</Text><Text style={{ fontSize: 20, fontWeight: 800, color: '#FF9900' }}>Shop.</Text></View>
+                <View style={{ flexDirection: 'row', }}><Text style={{ fontSize: 20, fontWeight: 800 }}></Text><Text style={{ fontSize: 20, fontWeight: 800, color: '#FF9900' }}>Shop.</Text></View>
             
                 <View style={{flexDirection: 'row'}}>
                 {/* Account Button */}
@@ -31,12 +31,13 @@ const HomeScreen = ({ navigation }) => {
                 <TouchableOpacity style={{flex:0}} onPress={() => navigation.navigate('DiscoverScreen')}><Feather name="search" size={24} color="grey" /></TouchableOpacity>
             </View>
 
+            <ScrollView style={styles.container}>
             {/* Banners Carousel */}
             <CarouselComponent/>
 
             {/* Best Sellers Section */}
             <View style={styles.bestSellersContainer}>
-                <Text style={styles.h2}>Best Sellers</Text>
+                <Text style={styles.h2}>Trending</Text>
                 <FlatList
                     data={products}
                     renderItem={({ item }) => (
@@ -64,7 +65,65 @@ const HomeScreen = ({ navigation }) => {
                 />
             </View>
 
+                {/* Best Sellers Section */}
+                <View style={styles.bestSellersContainer}>
+                <Text style={styles.h2}>Shoes</Text>
+                <FlatList
+                    data={products}
+                    renderItem={({ item }) => (
+                        <View style={{ flexDirection: 'row', marginTop: 20, width: 144, marginRight: 18, }}>
+                          <TouchableOpacity>
+                            {/* Product thumbnail */}
+                            <Image style={styles.thumbnail} source={{ uri: item.thumbnail }} />
+                            {/* Product title */}
+                            <Text numberOfLines={1} ellipsizeMode="tail" style={{ fontSize: 15, marginTop: 6 }}>{item.title}</Text>
+                            <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 3 }}>
+                              {/* Price */}
+                              <Text style={{ fontWeight: '700' }}>$ {item.price}</Text>
+                              {/* Ratings */}
+                              <View style={{ flexDirection: 'row' }}>
+                                <MaterialCommunityIcons name="star" size={18} color="#FFBE5B" />
+                                <Text style={{ fontWeight: '700' }}>{item.rating}</Text>
+                              </View>
+                            </View>
+                          </TouchableOpacity>
+                        </View>
+                      )}
+                      
+                    horizontal
+                    showsHorizontalScrollIndicator={false}
+                />
+            </View>
 
+            <View style={styles.bestSellersContainer}>
+                <Text style={styles.h2}>acsessories</Text>
+                <FlatList
+                    data={products}
+                    renderItem={({ item }) => (
+                        <View style={{ flexDirection: 'row', marginTop: 20, width: 144, marginRight: 18, }}>
+                          <TouchableOpacity>
+                            {/* Product thumbnail */}
+                            <Image style={styles.thumbnail} source={{ uri: item.thumbnail }} />
+                            {/* Product title */}
+                            <Text numberOfLines={1} ellipsizeMode="tail" style={{ fontSize: 15, marginTop: 6 }}>{item.title}</Text>
+                            <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 3 }}>
+                              {/* Price */}
+                              <Text style={{ fontWeight: '700' }}>$ {item.price}</Text>
+                              {/* Ratings */}
+                              <View style={{ flexDirection: 'row' }}>
+                                <MaterialCommunityIcons name="star" size={18} color="#FFBE5B" />
+                                <Text style={{ fontWeight: '700' }}>{item.rating}</Text>
+                              </View>
+                            </View>
+                          </TouchableOpacity>
+                        </View>
+                      )}
+                      
+                    horizontal
+                    showsHorizontalScrollIndicator={false}
+                />
+            </View>
+            </ScrollView>
         </View>
     )
 }
@@ -92,7 +151,7 @@ const styles = StyleSheet.create({
     },
     bestSellersContainer:{
         flexDirection: 'column',
-        marginTop: 50,
+        marginTop: 30,
         padding: 15,
     },
     h2: {
@@ -107,4 +166,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default HomeScreen
+export default HomeScreen;
