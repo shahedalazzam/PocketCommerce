@@ -1,23 +1,24 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import AppNavigator from './src/navigation/AppNavigator';
+import { StatusBar } from "expo-status-bar";
+import { StyleSheet, Text, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import AppNavigator from "./src/navigation/AppNavigator";
+import { CartContextProvider } from "./src/context/CartContext";
 
 export default function App() {
-  return (
-    <SafeAreaView style={styles.container}>
+   return (
+      <CartContextProvider>
+         <SafeAreaView style={styles.container}>
+            <AppNavigator />
 
-      <AppNavigator/>
-
-      <StatusBar style="auto" />
-      
-    </SafeAreaView>
-  );
+            <StatusBar style="auto" />
+         </SafeAreaView>
+      </CartContextProvider>
+   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
+   container: {
+      flex: 1,
+      backgroundColor: "#fff",
+   },
 });

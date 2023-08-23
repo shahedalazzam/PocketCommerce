@@ -14,10 +14,12 @@ import {
 import React, { useLayoutEffect, useRef } from "react";
 import carousel from "../../data/carousel";
 import Slider from "../../Components/Slider";
+import { useCartsContext } from "../../hooks/useCartContext";
 const { width, height } = Dimensions.get("window");
 // import CarouselComponent from "../HomeScreen/components/CarouselComponent";
 
 export default function ProductDetails() {
+   const { dispatch } = useCartsContext();
    const navigation = useNavigation();
    const route = useRoute();
    const { params } = route;
@@ -61,6 +63,8 @@ export default function ProductDetails() {
                <Pressable
                   onPress={() => {
                      Alert.alert("", "Added to cart ");
+                     console.log(params.item);
+                     dispatch({ type: "ADD_CARD", payload: params.item });
                      navigation.goBack();
                   }}
                >

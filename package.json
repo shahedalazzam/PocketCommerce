@@ -15,6 +15,7 @@
     "@react-navigation/stack": "^6.3.16",
     "expo": "~48.0.9",
     "expo-status-bar": "~1.4.4",
+    "frames-react-native": "^1.1.9",
     "inter-font": "^3.19.0",
     "react": "18.2.0",
     "react-native": "0.71.6",
