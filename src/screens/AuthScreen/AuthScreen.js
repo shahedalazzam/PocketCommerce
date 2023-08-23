@@ -9,29 +9,58 @@ import {
 import React, { useState } from "react";
 import { AntDesign } from "@expo/vector-icons";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-import { NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer, useNavigation } from "@react-navigation/native";
 
 const AuthScreen = ({ navigation }) => {
-  const [error, setError] = useState(false);
   const SigninComponent = () => {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [error, setError] = useState(false);
+    // const { navigate } = useNavigation();
+
+    const handleSignIn = () => {
+      if (email === "abd@gmail.com" && password === "abd123") {
+        setError(false);
+        navigation.navigate("HomeScreen");
+      } else {
+        setError(true);
+      }
+    };
     return (
       <View style={styles.formContainer}>
         {/* Email input */}
         <View style={styles.TextInputContainer}>
           <AntDesign name="mail" size={24} style={styles.TextInputIcon} />
-          <TextInput placeholder="Email" style={styles.TextInputText} />
+          <TextInput
+            placeholder="Email"
+            style={styles.TextInputText}
+            onChangeText={setEmail}
+            value={email}
+          />
         </View>
 
         {/* Password input */}
         <View style={styles.TextInputContainer}>
           <AntDesign name="lock" size={24} style={styles.TextInputIcon} />
-          <TextInput placeholder="Password" style={styles.TextInputText} />
+          <TextInput
+            placeholder="Password"
+            style={styles.TextInputText}
+            onChangeText={setPassword}
+            value={password}
+          />
         </View>
 
         {/* Sign in Button */}
-        <TouchableOpacity style={styles.Button}>
+        <TouchableOpacity style={styles.Button} onPress={handleSignIn}>
           <Text style={styles.ButtonText}>SIGN IN</Text>
         </TouchableOpacity>
+
+        {/* msg error */}
+        {error && (
+          <View style={styles.ErrorBox}>
+            <Text style={styles.ErrorBoxText}>Invalid email or password</Text>
+          </View>
+        )}
       </View>
     );
   };
@@ -70,15 +99,6 @@ const AuthScreen = ({ navigation }) => {
         <TouchableOpacity style={styles.Button}>
           <Text style={styles.ButtonText}>SIGN UP</Text>
         </TouchableOpacity>
-
-        {/* msg error */}
-        {error ? (
-          <View style={styles.ErrorBox}>
-            <Text style={styles.ErrorBoxText}>error</Text>
-          </View>
-        ) : (
-          ""
-        )}
       </View>
     );
   };
