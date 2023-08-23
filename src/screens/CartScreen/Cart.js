@@ -16,7 +16,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 export default function Cart() {
    const { cards, dispatch } = useCartsContext();
-   const navigation = useNavigation();
+   const { navigate } = useNavigation();
    return (
       <View style={{ flex: 1 }}>
          {cards.length == 0 && (
@@ -37,9 +37,7 @@ export default function Cart() {
                      return <CartItem key={index} card={card} />;
                   })}
                </ScrollView>
-               <TouchableOpacity
-                  onPress={() => navigation.navigate("CheckoutScreen")}
-               >
+               <TouchableOpacity onPress={() => navigate("CheckoutScreen")}>
                   <Text style={styles.button}>Go To Check Out</Text>
                </TouchableOpacity>
             </>

@@ -162,7 +162,9 @@ const HomeScreen = ({ navigation }) => {
                            marginRight: 18,
                         }}
                      >
-                        <TouchableOpacity>
+                        <TouchableOpacity
+                           onPress={() => navigate("ProductDetails", { item })}
+                        >
                            {/* Product thumbnail */}
                            <Image
                               style={styles.thumbnail}
@@ -220,7 +222,9 @@ const HomeScreen = ({ navigation }) => {
                            marginRight: 18,
                         }}
                      >
-                        <TouchableOpacity>
+                        <TouchableOpacity
+                           onPress={() => navigate("ProductDetails", { item })}
+                        >
                            {/* Product thumbnail */}
                            <Image
                               style={styles.thumbnail}
