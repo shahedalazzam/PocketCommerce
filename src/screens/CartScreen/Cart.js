@@ -37,7 +37,9 @@ export default function Cart() {
                      return <CartItem key={index} card={card} />;
                   })}
                </ScrollView>
-               <TouchableOpacity onPress={() => navigation("CheckoutScreen")}>
+               <TouchableOpacity
+                  onPress={() => navigation.navigate("CheckoutScreen")}
+               >
                   <Text style={styles.button}>Go To Check Out</Text>
                </TouchableOpacity>
             </>
